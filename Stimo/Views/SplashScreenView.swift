@@ -17,7 +17,7 @@ struct SplashScreenView: View {
             HomeView()
         } else {
             ZStack {
-                Color(hex: 0x545454).ignoresSafeArea()
+                Color("GreyOne").ignoresSafeArea()
                 VStack {
                     Spacer()
                     Text("Stimo")

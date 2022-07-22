@@ -49,7 +49,7 @@ struct BadgeView: View {
             }
             .padding(.vertical, 25)
             .padding(.horizontal, 25)
-            .background(Color(hex: 0x484747))
+            .background(Color("GreyTwo"))
             .cornerRadius(25)
             .foregroundColor(.white)
         .padding()

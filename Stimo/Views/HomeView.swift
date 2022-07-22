@@ -17,7 +17,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            Color(hex: 0x545454).ignoresSafeArea()
+            Color("GreyOne").ignoresSafeArea()
             VStack (alignment: .leading){
                 VStack(alignment: .leading) {
                     Text("Stimo")
@@ -40,10 +40,10 @@ struct HomeView: View {
                             Spacer()
                             Text("10")
                                 .fontWeight(.bold)
-                                .foregroundColor(.yellow)
+                                .foregroundColor(Color("YellowOne"))
                         }
                     }
-                    .listRowBackground(Color(hex: 0x484747))
+                    .listRowBackground(Color("GreyTwo"))
                     Section {
                         HStack {
                             Text("Current Badge")
@@ -63,7 +63,7 @@ struct HomeView: View {
                         }
                         .foregroundColor(.white)
                     }
-                    .listRowBackground(Color(hex: 0x484747))
+                    .listRowBackground(Color("GreyTwo"))
                     Section {
                         VStack {
                             Spacer(minLength: 15)
@@ -110,7 +110,7 @@ struct HomeView: View {
                             Spacer(minLength: 20)
                         }
                     }
-                    .listRowBackground(Color(hex: 0x484747))
+                    .listRowBackground(Color("GreyTwo"))
                 }
             }
             .blur(radius: customAlertShowed ? 5 : 0)
