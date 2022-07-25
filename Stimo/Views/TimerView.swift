@@ -36,9 +36,9 @@ struct TimerView: View {
                                 Circle()
                                     .stroke(Color("GreyOne"), lineWidth: 1)
                                 Circle()
-                                    .trim(from: 0, to: CGFloat(timerModel.progressBar-0.5))
+                                    .trim(from: 0, to: CGFloat(timerModel.progressBar))
                                     .stroke(Color("YellowOne"), lineWidth: 20)
-                                Text(timerModel.timerStringValue)
+                                Text("\(timerModel.timerStringValue)")
                                     .font(.system(size: 45))
                                     .fontWeight(.heavy)
                                     .foregroundColor(Color("YellowOne"))
@@ -66,7 +66,6 @@ struct TimerView: View {
                     Spacer()
                 }
             }
-            .padding()
         }
     }
 }

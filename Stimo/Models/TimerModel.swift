@@ -13,6 +13,10 @@ class TimerModel: NSObject, ObservableObject {
     @Published var timerStringValue: String = "00:00:00"
     
     @Published var hour: Int = 0
-    @Published var minute: Int = 0
+    @Published var minute: Int = 30
     @Published var second: Int = 0
+    
+    override init() {
+        //
+    }
 }
