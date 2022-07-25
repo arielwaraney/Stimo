@@ -33,19 +33,34 @@ struct HomeView: View {
                     }.padding(.leading)
                         .padding(.leading)
                         .padding(.top)
-                    Form {
-                        //TODO: section border color to => #FFC107
+                    
+                    ScrollView(.vertical) {
+                        //Point
                         Section {
                             HStack() {
-                                Text("Points")
+                                Text("Your Points")
                                     .foregroundColor(.white)
                                 Spacer()
                                 Text("10")
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("YellowOne"))
                             }
+                            .padding(10)
+                            .background(Color("GreyTwo"))
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("YellowOne"), lineWidth: 3)
+                            )
+                            
                         }
-                        .listRowBackground(Color("GreyTwo"))
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                        
+                 
+                        //Badge
                         Section {
                             HStack {
                                 Text("Current Badge")
@@ -63,9 +78,18 @@ struct HomeView: View {
                                         .frame(width:80, height: 50)
                                 }
                             }
+                            .padding(10)
+                            .background(Color("GreyTwo"))
                             .foregroundColor(.white)
+                            .cornerRadius(10)
                         }
-                        .listRowBackground(Color("GreyTwo"))
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                        
+                        
+                        //Focus Time
                         Section {
                             VStack() {
                                 Spacer(minLength: 15)
@@ -85,21 +109,63 @@ struct HomeView: View {
                                 VStack {
                                     Text("Set Your Timer")
                                         .foregroundColor(.white)
+                                    Spacer(minLength: 5)
+                                    Text("(Tap And Hold)")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(.white)
                                     Spacer(minLength: 20)
                                     HStack{
-                                        //TODO: Button Tapped Effect & List Pop Up
-                                        Button("\(timerModel.hour) hr") {
-                                            //action
+                                        Section {
+                                            Text("\(timerModel.hour) hr")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color("GreyTwo").opacity(timerModel.hour == 0 ? 0.8 : 1))
+                                                .padding(.horizontal, 20)
+                                                .padding(.vertical, 5)
+                                                .background{
+                                                    Capsule()
+                                                        .fill(.white.opacity(timerModel.hour == 0 ? 0.5 : 1))
+                                                }
+                                                .contextMenu {
+                                                    ContextMenuOption(maxValue: 12, hint: "hr") { value in
+                                                        timerModel.hour = value
+                                                    }
+                                                }
                                         }
-                                        .buttonStyle(WhiteSmall())
-                                        Button("\(timerModel.minute) min"){
-                                            //action
+                                        Section {
+                                            Text("\(timerModel.minute) min")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color("GreyTwo").opacity(timerModel.minute == 0 ? 0.8 : 1))
+                                                .padding(.horizontal, 20)
+                                                .padding(.vertical, 5)
+                                                .background{
+                                                    Capsule()
+                                                        .fill(.white.opacity(timerModel.minute == 0 ? 0.5 : 1))
+                                                }
+                                                .contextMenu {
+                                                    ContextMenuOption(maxValue: 59, hint: "min") { value in
+                                                        timerModel.minute = value
+                                                    }
+                                                }
                                         }
-                                        .buttonStyle(WhiteSmall())
-                                        Button("\(timerModel.second) sec"){
-                                            //action
+                                        Section {
+                                            Text("\(timerModel.second) sec")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color("GreyTwo").opacity(timerModel.second == 0 ? 0.8 : 1))
+                                                .padding(.horizontal, 20)
+                                                .padding(.vertical, 5)
+                                                .background{
+                                                    Capsule()
+                                                        .fill(.white.opacity(timerModel.second == 0 ? 0.5 : 1))
+                                                }
+                                                .contextMenu {
+                                                    ContextMenuOption(maxValue: 59, hint: "sec") { value in
+                                                        timerModel.second = value
+                                                    }
+                                                }
                                         }
-                                        .buttonStyle(WhiteSmall())
                                     }
                                     Spacer(minLength: 20)
                                 }
@@ -107,16 +173,28 @@ struct HomeView: View {
                                 Spacer(minLength: 20)
                                 NavigationLink(destination: TimerView().environmentObject(timerModel)){
                                     Text("LET'S GO")
+                                        .fontWeight(.bold)
                                         .frame(width: 160, height: 39)
                                         .foregroundColor(Color("GreyOne"))
                                         .background(Color("YellowOne"))
                                         .cornerRadius(100)
                                 }
+                                .disabled(timerModel.second == 0 && timerModel.minute == 0 && timerModel.hour == 0)
+                                .opacity((timerModel.second == 0 && timerModel.minute == 0 && timerModel.hour == 0) ? 0.5 : 1)
                                 Spacer(minLength: 20)
                             }
+                            .padding(10)
+                            .background(Color("GreyTwo"))
+                            .cornerRadius(10)
                         }
-                        .listRowBackground(Color("GreyTwo"))
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
                     }
+                    
+                   
+                    
                 }
                 .blur(radius: customAlertShowed ? 5 : 0)
                 
@@ -128,10 +206,22 @@ struct HomeView: View {
             .navigationBarHidden(true)
         }
     }
+    
+    //MARK: Reusable Context Menu Options
+    @ViewBuilder
+    func ContextMenuOption(maxValue: Int, hint: String, onClick: @escaping (Int)->())->some View {
+        ForEach(0...maxValue, id: \.self) { value in
+            Button("\(value) \(hint)"){
+                onClick(value)
+            }
+        }
+    }
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(TimerModel())
     }
 }
+

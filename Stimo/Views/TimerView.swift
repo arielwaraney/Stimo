@@ -10,6 +10,7 @@ import SwiftUI
 struct TimerView: View {
     
     @EnvironmentObject var timerModel: TimerModel
+    @Environment(\.presentationMode) var presentMode
     
     var body: some View {
         ZStack {
@@ -19,6 +20,7 @@ struct TimerView: View {
                     Spacer()
                     Button() {
                         //action
+                        presentMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(Color("YellowOne"))
@@ -38,11 +40,11 @@ struct TimerView: View {
                                 Circle()
                                     .trim(from: 0, to: CGFloat(timerModel.progressBar))
                                     .stroke(Color("YellowOne"), lineWidth: 20)
-                                Text("\(timerModel.timerStringValue)")
+                                Text("\(selectedTimeConvert(hint:"hr")):\(selectedTimeConvert(hint:"min")):\(selectedTimeConvert(hint:"sec"))")
                                     .font(.system(size: 45))
                                     .fontWeight(.heavy)
                                     .foregroundColor(Color("YellowOne"))
-                                    .rotationEffect(.init(degrees: -90))
+                                    .rotationEffect(.init(degrees: 90))
                             }
                             .padding(30)
                             .frame(height: proxy.size.width)
@@ -54,18 +56,48 @@ struct TimerView: View {
                     HStack {
                         Button("FOCUS PLAN"){
                             //action
-                            
+                            print("Focus Planner")
                         }
-                        .buttonStyle(YellowTwo())
+                        .font(.system(size: 15, weight: .bold, design: .default))
+                        .frame(width: 137, height: 39)
+                        .foregroundColor(Color("GreyOne"))
+                        .background(Color("YellowTwo"))
+                        .cornerRadius(100)
+                        
                         Button("START"){
                             //action
-                            
+                            //timerModel.startTimer()
+                            print("Timer start")
                         }
-                        .buttonStyle(YellowOne())
+                        .font(.system(size: 15, weight: .bold, design: .default))
+                        .frame(width: 137, height: 39)
+                        .foregroundColor(Color("GreyOne"))
+                        .background(Color("YellowOne"))
+                        .cornerRadius(100)
                     }
                     Spacer()
                 }
+                .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
+                    if timerModel.isStarted {
+                        timerModel.updateTimer()
+                    }
+                }
             }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+        }
+    }
+    
+    func selectedTimeConvert(hint: String) -> String {
+        switch hint {
+        case "hr":
+            return "\(timerModel.hour >= 10 ? "\(timerModel.hour)" : "0\(timerModel.hour)")"
+        case "min":
+            return "\(timerModel.minute >= 10 ? "\(timerModel.minute)" : "0\(timerModel.minute)")"
+        case "sec":
+            return "\(timerModel.second >= 10 ? "\(timerModel.second)" : "0\(timerModel.second)")"
+        default:
+            return "error"
         }
     }
 }
