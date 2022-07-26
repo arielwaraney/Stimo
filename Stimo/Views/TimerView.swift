@@ -11,9 +11,12 @@ struct TimerView: View {
     
     @EnvironmentObject var timerModel: TimerModel
     @Environment(\.presentationMode) var presentMode
-    @State private var isDone = false
+    @State var isDone = false
+    @State var mvFocusPlanShowed = false
+    @State var mvTimerControlShowed = false
     
     var body: some View {
+        
         if isDone {
             CompleteView()
         } else {
@@ -63,6 +66,7 @@ struct TimerView: View {
                                 Spacer()
                                 Button() {
                                     //action
+                                    mvFocusPlanShowed.toggle()
                                 } label: {
                                     VStack {
                                         Image(systemName: "pencil.circle.fill")
@@ -72,14 +76,19 @@ struct TimerView: View {
                                     }
                                 }
                                 .opacity(timerModel.isStarted ? 1 : 0)
+                                .sheet(isPresented: $mvFocusPlanShowed) {
+                                    TimerControlView()
+                                }
                                 Spacer()
                                 Button() {
                                     //action
-                                    
+                                    mvTimerControlShowed.toggle()
                                     //TODO: Cara Pause Nanti
                                     /*
                                     timerModel.isStarted = true
                                     */
+                                    //Cancelling All Notifications
+                                    //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                                 } label: {
                                     VStack {
                                         Image(systemName: "timer")
@@ -89,6 +98,10 @@ struct TimerView: View {
                                     }
                                 }
                                 .opacity(timerModel.isStarted ? 1 : 0)
+                                .sheet(isPresented: $mvFocusPlanShowed) {
+                                    TimerControlView()
+                                }
+                                
                                 Spacer()
                             }
                             
@@ -124,6 +137,8 @@ struct TimerView: View {
                             timerModel.updateTimer()
                         }
                         if timerModel.isFinished {
+                            //call the scheduler notification
+                            NotificationManager.instance.scheduleNotification()
                             isDone = timerModel.isFinished
                             timerModel.isFinished.toggle()
                             timerModel.stopTimer()
@@ -134,6 +149,7 @@ struct TimerView: View {
                 .navigationBarBackButtonHidden(true)
             }
         }
+         
     }
     
     func selectedTimeConvert(hint: String) -> String {
@@ -155,3 +171,55 @@ struct TimerView_Previews: PreviewProvider {
         TimerView().environmentObject(TimerModel())
     }
 }
+
+/*
+//custom half modal view modifier
+extension View{
+    
+    func halfScreen<ScreenView: View>(showScreen: Binding<Bool>, @ViewBuilder screenView: @escaping()->ScreenView)->some View {
+        
+        return self
+            .background(HalfScreenHelper(screenView: screenView(), showScreen: showScreen))
+    }
+    
+}
+
+struct HalfScreenHelper<ScreenView: View>: UIViewControllerRepresentable {
+    var screenView: ScreenView
+    @Binding var showScreen: Bool
+    
+    let controller = UIViewController()
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        controller.view.backgroundColor = UIColor(Color("GreyOne"))
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        if showScreen {
+            //present the modal view...
+            let screenController = UIHostingController(rootView: screenView)
+            //let screenController = CustomHostingController(rootView: screenView)
+            
+            uiViewController.present(screenController, animated: true) {
+                //toogling the showed state
+                DispatchQueue.main.async {
+                    self.showScreen.toggle()
+                }
+            }
+        }
+    }
+}
+
+class CustomHostingController<Content: View> : UIHostingController<Content> {
+    override func viewDidLoad() {
+        //setting the controller properties
+        if let presentationController = presentationController as? UISheetPresentationController {
+            presentationController.detents = [
+                .medium(),
+                .large()
+            ]
+        }
+    }
+}
+*/

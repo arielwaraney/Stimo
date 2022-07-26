@@ -14,6 +14,8 @@ struct HomeView: View {
     
     init() {
         UITableView.appearance().backgroundColor = .clear
+        //MARK: Request Notifications
+        NotificationManager.instance.requestAuthorization()
     }
     
     var body: some View {
@@ -204,6 +206,9 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
+            .onAppear() {
+                NotificationManager.instance.resetNotification()
+            }
         }
     }
     

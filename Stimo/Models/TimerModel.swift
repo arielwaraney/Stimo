@@ -25,7 +25,7 @@ class TimerModel: NSObject, ObservableObject {
     @Published var staticTotalSeconds: Int = 0
     
     override init() {
-        //
+        super.init()
     }
     
     //MARK: Starting Timer

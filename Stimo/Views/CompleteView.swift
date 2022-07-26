@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CompleteView: View {
     
-    @EnvironmentObject var timerModel: TimerModel
     @Environment(\.presentationMode) var presentMode
     
     var body: some View {
@@ -42,6 +41,7 @@ struct CompleteView: View {
                 Spacer()
                 Button(){
                     presentMode.wrappedValue.dismiss()
+                    NotificationManager.instance.resetNotification()
                 } label: {
                     Text("DONE")
                         .fontWeight(.bold)
@@ -58,6 +58,6 @@ struct CompleteView: View {
 
 struct CompleteView_Previews: PreviewProvider {
     static var previews: some View {
-        CompleteView().environmentObject(TimerModel())
+        CompleteView()
     }
 }
