@@ -16,7 +16,6 @@ class TimerModel: NSObject, ObservableObject {
     @Published var minute: Int = 0
     @Published var second: Int = 5
     
-    
     @Published var isStarted: Bool = false
     @Published var isPaused: Bool = false
     @Published var isFinished: Bool = false
@@ -30,6 +29,7 @@ class TimerModel: NSObject, ObservableObject {
     
     //MARK: Starting Timer
     func startTimer() {
+        isStarted = true
         withAnimation(.easeInOut(duration: 0.25)){
             isStarted = true
         }
@@ -65,6 +65,10 @@ class TimerModel: NSObject, ObservableObject {
             isStarted = false
             isFinished = true
             print("Finished")
+        } else {
+            isStarted = true
+            isFinished = false
+            //print("status in timer: \(isStarted)")
         }
     }
 }

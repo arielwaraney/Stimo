@@ -11,7 +11,6 @@
 		A929DD03288917AA008D7A02 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD02288917AA008D7A02 /* BadgeView.swift */; };
 		A929DD09288A86C6008D7A02 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD08288A86C6008D7A02 /* TimerModel.swift */; };
 		A929DD0B288A87DB008D7A02 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0A288A87DB008D7A02 /* TimerView.swift */; };
-		A929DD0D288A9B30008D7A02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0C288A9B30008D7A02 /* TimerViewModel.swift */; };
 		A98303E5288EA088003C9069 /* CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98303E4288EA088003C9069 /* CompleteView.swift */; };
 		A98303EA288FBEB0003C9069 /* TimerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98303E9288FBEB0003C9069 /* TimerControlView.swift */; };
 		A98303EC288FC443003C9069 /* FocusPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98303EB288FC443003C9069 /* FocusPlanView.swift */; };
@@ -28,7 +27,6 @@
 		A929DD02288917AA008D7A02 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		A929DD08288A86C6008D7A02 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		A929DD0A288A87DB008D7A02 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		A929DD0C288A9B30008D7A02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		A98303E4288EA088003C9069 /* CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteView.swift; sourceTree = "<group>"; };
 		A98303E9288FBEB0003C9069 /* TimerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlView.swift; sourceTree = "<group>"; };
 		A98303EB288FC443003C9069 /* FocusPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPlanView.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 		A929DD06288A46E3008D7A02 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A929DD08288A86C6008D7A02 /* TimerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -86,7 +83,7 @@
 		A929DD07288A46F1008D7A02 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A929DD0C288A9B30008D7A02 /* TimerViewModel.swift */,
+				A929DD08288A86C6008D7A02 /* TimerModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 			files = (
 				A98303EC288FC443003C9069 /* FocusPlanView.swift in Sources */,
 				A929DD03288917AA008D7A02 /* BadgeView.swift in Sources */,
-				A929DD0D288A9B30008D7A02 /* TimerViewModel.swift in Sources */,
 				A929DD0128891369008D7A02 /* ButtonStyles.swift in Sources */,
 				A9B976A82887E59100E2766D /* HomeView.swift in Sources */,
 				A9B976A62887E59100E2766D /* StimoApp.swift in Sources */,

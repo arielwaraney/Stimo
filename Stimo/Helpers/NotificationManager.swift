@@ -18,7 +18,7 @@ class NotificationManager {
             if let error = error {
                 print("ERROR : \(error)")
             } else {
-                print("SUCCESS")
+                //print("SUCCESS")
             }
         }
     }
@@ -41,5 +41,7 @@ class NotificationManager {
     func resetNotification() {
         //MARK: turn of the badge notification
         UIApplication.shared.applicationIconBadgeNumber = 0
+        //MARK: Cancelling All Notification
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }

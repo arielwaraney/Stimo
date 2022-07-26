@@ -120,7 +120,7 @@ struct TimerView: View {
                                 Button("START"){
                                     //action
                                     timerModel.startTimer()
-                                    print("Timer start")
+                                    print("Timer start : \(timerModel.isStarted)")
                                 }
                                 .font(.system(size: 15, weight: .bold, design: .default))
                                 .frame(width: 137, height: 39)
@@ -135,6 +135,7 @@ struct TimerView: View {
                     .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
                         if timerModel.isStarted {
                             timerModel.updateTimer()
+                            print("ongoing : \(timerModel.isStarted)")
                         }
                         if timerModel.isFinished {
                             //call the scheduler notification
@@ -142,6 +143,7 @@ struct TimerView: View {
                             isDone = timerModel.isFinished
                             timerModel.isFinished.toggle()
                             timerModel.stopTimer()
+                            print("ongoing : \(timerModel.isStarted)")
                         }
                     }
                 }
@@ -171,55 +173,3 @@ struct TimerView_Previews: PreviewProvider {
         TimerView().environmentObject(TimerModel())
     }
 }
-
-/*
-//custom half modal view modifier
-extension View{
-    
-    func halfScreen<ScreenView: View>(showScreen: Binding<Bool>, @ViewBuilder screenView: @escaping()->ScreenView)->some View {
-        
-        return self
-            .background(HalfScreenHelper(screenView: screenView(), showScreen: showScreen))
-    }
-    
-}
-
-struct HalfScreenHelper<ScreenView: View>: UIViewControllerRepresentable {
-    var screenView: ScreenView
-    @Binding var showScreen: Bool
-    
-    let controller = UIViewController()
-    
-    func makeUIViewController(context: Context) -> some UIViewController {
-        controller.view.backgroundColor = UIColor(Color("GreyOne"))
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        if showScreen {
-            //present the modal view...
-            let screenController = UIHostingController(rootView: screenView)
-            //let screenController = CustomHostingController(rootView: screenView)
-            
-            uiViewController.present(screenController, animated: true) {
-                //toogling the showed state
-                DispatchQueue.main.async {
-                    self.showScreen.toggle()
-                }
-            }
-        }
-    }
-}
-
-class CustomHostingController<Content: View> : UIHostingController<Content> {
-    override func viewDidLoad() {
-        //setting the controller properties
-        if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.detents = [
-                .medium(),
-                .large()
-            ]
-        }
-    }
-}
-*/
