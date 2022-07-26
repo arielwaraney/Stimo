@@ -12,6 +12,7 @@
 		A929DD09288A86C6008D7A02 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD08288A86C6008D7A02 /* TimerModel.swift */; };
 		A929DD0B288A87DB008D7A02 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0A288A87DB008D7A02 /* TimerView.swift */; };
 		A929DD0D288A9B30008D7A02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0C288A9B30008D7A02 /* TimerViewModel.swift */; };
+		A98303E5288EA088003C9069 /* CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98303E4288EA088003C9069 /* CompleteView.swift */; };
 		A9B976A62887E59100E2766D /* StimoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B976A52887E59100E2766D /* StimoApp.swift */; };
 		A9B976A82887E59100E2766D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B976A72887E59100E2766D /* HomeView.swift */; };
 		A9B976AA2887E59100E2766D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B976A92887E59100E2766D /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		A929DD08288A86C6008D7A02 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		A929DD0A288A87DB008D7A02 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A929DD0C288A9B30008D7A02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		A98303E4288EA088003C9069 /* CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteView.swift; sourceTree = "<group>"; };
 		A9B976A22887E59100E2766D /* Stimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B976A52887E59100E2766D /* StimoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StimoApp.swift; sourceTree = "<group>"; };
 		A9B976A72887E59100E2766D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 				A929DD02288917AA008D7A02 /* BadgeView.swift */,
 				A9B976B32887E62D00E2766D /* SplashScreenView.swift */,
 				A929DD0A288A87DB008D7A02 /* TimerView.swift */,
+				A98303E4288EA088003C9069 /* CompleteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				A9B976B42887E62D00E2766D /* SplashScreenView.swift in Sources */,
 				A929DD0B288A87DB008D7A02 /* TimerView.swift in Sources */,
 				A9B976D42887FFF500E2766D /* Extensions.swift in Sources */,
+				A98303E5288EA088003C9069 /* CompleteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
