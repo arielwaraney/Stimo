@@ -9,15 +9,16 @@ import SwiftUI
 
 struct SplashScreenView: View {
     
-    @StateObject var timerModel: TimerModel = TimerModel()
+    @EnvironmentObject var timerModel: TimerModel
     
     @State private var isActive = false
     @State private var size = 0.5
     @State private var opacity = 0.5
+    @State var isOpenend = false
     
     var body: some View {
         if isActive {
-            HomeView().environmentObject(timerModel)
+            HomeView()
         } else {
             ZStack {
                 Color("GreyOne").ignoresSafeArea()

@@ -65,10 +65,6 @@ class TimerModel: NSObject, ObservableObject {
             isStarted = false
             isFinished = true
             print("Finished")
-        } else {
-            isStarted = true
-            isFinished = false
-            //print("status in timer: \(isStarted)")
         }
     }
 }

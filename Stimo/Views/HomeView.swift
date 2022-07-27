@@ -16,6 +16,7 @@ struct HomeView: View {
         UITableView.appearance().backgroundColor = .clear
         //MARK: Request Notifications
         NotificationManager.instance.requestAuthorization()
+        
     }
     
     var body: some View {

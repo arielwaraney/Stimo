@@ -135,15 +135,14 @@ struct TimerView: View {
                     .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
                         if timerModel.isStarted {
                             timerModel.updateTimer()
-                            print("ongoing : \(timerModel.isStarted)")
                         }
                         if timerModel.isFinished {
                             //call the scheduler notification
                             NotificationManager.instance.scheduleNotification()
                             isDone = timerModel.isFinished
-                            timerModel.isFinished.toggle()
                             timerModel.stopTimer()
-                            print("ongoing : \(timerModel.isStarted)")
+                            print("Timer finish: \(timerModel.isFinished)")
+                            timerModel.isFinished.toggle()
                         }
                     }
                 }
