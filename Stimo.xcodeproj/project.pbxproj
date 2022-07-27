@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A929DD0128891369008D7A02 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0028891369008D7A02 /* ButtonStyles.swift */; };
+		A929DD0128891369008D7A02 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0028891369008D7A02 /* Extension.swift */; };
 		A929DD03288917AA008D7A02 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD02288917AA008D7A02 /* BadgeView.swift */; };
-		A929DD09288A86C6008D7A02 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD08288A86C6008D7A02 /* TimerModel.swift */; };
+		A929DD09288A86C6008D7A02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD08288A86C6008D7A02 /* TimerViewModel.swift */; };
 		A929DD0B288A87DB008D7A02 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929DD0A288A87DB008D7A02 /* TimerView.swift */; };
 		A98303E5288EA088003C9069 /* CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98303E4288EA088003C9069 /* CompleteView.swift */; };
 		A98303EA288FBEB0003C9069 /* TimerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98303E9288FBEB0003C9069 /* TimerControlView.swift */; };
@@ -20,12 +20,14 @@
 		A9B976AD2887E59100E2766D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B976AC2887E59100E2766D /* Preview Assets.xcassets */; };
 		A9B976B42887E62D00E2766D /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B976B32887E62D00E2766D /* SplashScreenView.swift */; };
 		A9B976D42887FFF500E2766D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B976D32887FFF500E2766D /* NotificationManager.swift */; };
+		A9E319572891360D001C1105 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E319562891360D001C1105 /* CustomColorPicker.swift */; };
+		A9E3195B289158DE001C1105 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3195A289158DE001C1105 /* TaskModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A929DD0028891369008D7A02 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		A929DD0028891369008D7A02 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		A929DD02288917AA008D7A02 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
-		A929DD08288A86C6008D7A02 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		A929DD08288A86C6008D7A02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		A929DD0A288A87DB008D7A02 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A98303E4288EA088003C9069 /* CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteView.swift; sourceTree = "<group>"; };
 		A98303E9288FBEB0003C9069 /* TimerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlView.swift; sourceTree = "<group>"; };
@@ -37,6 +39,8 @@
 		A9B976AC2887E59100E2766D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A9B976B32887E62D00E2766D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		A9B976D32887FFF500E2766D /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		A9E319562891360D001C1105 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
+		A9E3195A289158DE001C1105 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +71,9 @@
 		A929DD05288A4615008D7A02 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A929DD0028891369008D7A02 /* ButtonStyles.swift */,
+				A929DD0028891369008D7A02 /* Extension.swift */,
 				A9B976D32887FFF500E2766D /* NotificationManager.swift */,
+				A9E319562891360D001C1105 /* CustomColorPicker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -76,6 +81,7 @@
 		A929DD06288A46E3008D7A02 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A9E3195A289158DE001C1105 /* TaskModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,7 +89,7 @@
 		A929DD07288A46F1008D7A02 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A929DD08288A86C6008D7A02 /* TimerModel.swift */,
+				A929DD08288A86C6008D7A02 /* TimerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -202,11 +208,13 @@
 			files = (
 				A98303EC288FC443003C9069 /* FocusPlanView.swift in Sources */,
 				A929DD03288917AA008D7A02 /* BadgeView.swift in Sources */,
-				A929DD0128891369008D7A02 /* ButtonStyles.swift in Sources */,
+				A9E319572891360D001C1105 /* CustomColorPicker.swift in Sources */,
+				A929DD0128891369008D7A02 /* Extension.swift in Sources */,
 				A9B976A82887E59100E2766D /* HomeView.swift in Sources */,
 				A9B976A62887E59100E2766D /* StimoApp.swift in Sources */,
-				A929DD09288A86C6008D7A02 /* TimerModel.swift in Sources */,
+				A929DD09288A86C6008D7A02 /* TimerViewModel.swift in Sources */,
 				A98303EA288FBEB0003C9069 /* TimerControlView.swift in Sources */,
+				A9E3195B289158DE001C1105 /* TaskModel.swift in Sources */,
 				A9B976B42887E62D00E2766D /* SplashScreenView.swift in Sources */,
 				A929DD0B288A87DB008D7A02 /* TimerView.swift in Sources */,
 				A9B976D42887FFF500E2766D /* NotificationManager.swift in Sources */,

@@ -23,6 +23,8 @@ class TimerModel: NSObject, ObservableObject {
     @Published var totalSeconds: Int = 0
     @Published var staticTotalSeconds: Int = 0
     
+    @Published var selectedColor: Color = .gray
+    
     override init() {
         super.init()
     }
@@ -65,6 +67,29 @@ class TimerModel: NSObject, ObservableObject {
             isStarted = false
             isFinished = true
             print("Finished")
+        }
+    }
+    
+    func getColorName()->String {
+        switch selectedColor {
+        case .red:
+            return "Red"
+        case .yellow:
+            return "Yellow"
+        case .green:
+            return "Green"
+        case .blue:
+            return "Blue"
+        case .purple:
+            return "Purple"
+        case .white:
+            return "White"
+        case .gray:
+            return "Default"
+        case .black:
+            return "Black"
+        default:
+            return "Error"
         }
     }
 }

@@ -21,7 +21,7 @@ struct TimerView: View {
             CompleteView()
         } else {
             ZStack {
-                Color("GreyOne").ignoresSafeArea()
+                Color("\(getColorOne(color: timerModel.selectedColor))").ignoresSafeArea()
                 VStack {
                     HStack {
                         Spacer()
@@ -30,28 +30,28 @@ struct TimerView: View {
                             presentMode.wrappedValue.dismiss()
                         } label: {
                             Image(systemName: "x.circle.fill")
-                                .foregroundColor(Color("YellowOne"))
+                                .foregroundColor(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                         }
                         .opacity(timerModel.isStarted ? 0 : 1)
                     }.padding()
                     VStack(alignment: .center) {
                         Spacer()
                         Text("Check Your Focus Plan Before You Start!")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("\(getColorTextContrast(color: timerModel.selectedColor))"))
                             .font(.system(size: 25))
                             .fontWeight(.bold)
                         GeometryReader { proxy in
                             VStack(spacing: 15){
                                 ZStack {
                                     Circle()
-                                        .stroke(Color("GreyTwo"), lineWidth: 1)
+                                        .stroke(Color("\(getColorFour(color: timerModel.selectedColor))"), lineWidth: 1)
                                     Circle()
                                         .trim(from: 0, to: CGFloat(timerModel.progressBar))
-                                        .stroke(Color("YellowOne"), lineWidth: 20)
+                                        .stroke(Color("\(getColorTwo(color: timerModel.selectedColor))"), lineWidth: 20)
                                     Text("\(selectedTimeConvert(hint:"hr")):\(selectedTimeConvert(hint:"min")):\(selectedTimeConvert(hint:"sec"))")
                                         .font(.system(size: 45))
                                         .fontWeight(.heavy)
-                                        .foregroundColor(Color("YellowOne"))
+                                        .foregroundColor(Color("\(getColorTextContrast(color: timerModel.selectedColor))"))
                                         .rotationEffect(.init(degrees: 90))
                                 }
                                 .padding(30)
@@ -70,14 +70,14 @@ struct TimerView: View {
                                 } label: {
                                     VStack {
                                         Image(systemName: "pencil.circle.fill")
-                                            .foregroundColor(Color("YellowTwo"))
+                                            .foregroundColor(Color("\(getColorThree(color: timerModel.selectedColor))"))
                                         Text("Focus Plan")
-                                            .foregroundColor(Color("YellowTwo"))
+                                            .foregroundColor(Color("\(getColorThree(color: timerModel.selectedColor))"))
                                     }
                                 }
                                 .opacity(timerModel.isStarted ? 1 : 0)
                                 .sheet(isPresented: $mvFocusPlanShowed) {
-                                    TimerControlView()
+                                    FocusPlanView()
                                 }
                                 Spacer()
                                 Button() {
@@ -92,13 +92,13 @@ struct TimerView: View {
                                 } label: {
                                     VStack {
                                         Image(systemName: "timer")
-                                            .foregroundColor(Color("YellowOne"))
+                                            .foregroundColor(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                                         Text("Timer")
-                                            .foregroundColor(Color("YellowOne"))
+                                            .foregroundColor(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                                     }
                                 }
                                 .opacity(timerModel.isStarted ? 1 : 0)
-                                .sheet(isPresented: $mvFocusPlanShowed) {
+                                .sheet(isPresented: $mvTimerControlShowed) {
                                     TimerControlView()
                                 }
                                 
@@ -108,12 +108,15 @@ struct TimerView: View {
                             HStack(spacing: 30) {
                                 Button("FOCUS PLAN"){
                                     //action
-                                    print("Focus Planner")
+                                    mvFocusPlanShowed.toggle()
+                                }
+                                .sheet(isPresented: $mvFocusPlanShowed) {
+                                    FocusPlanView()
                                 }
                                 .font(.system(size: 15, weight: .bold, design: .default))
                                 .frame(width: 137, height: 39)
-                                .foregroundColor(Color("GreyOne"))
-                                .background(Color("YellowTwo"))
+                                .foregroundColor(Color("\(getColorButtonLabelContrast(color: timerModel.selectedColor))"))
+                                .background(Color("\(getColorThree(color: timerModel.selectedColor))"))
                                 .cornerRadius(100)
                                 .opacity(timerModel.isStarted ? 0 : 1)
                                 
@@ -124,8 +127,8 @@ struct TimerView: View {
                                 }
                                 .font(.system(size: 15, weight: .bold, design: .default))
                                 .frame(width: 137, height: 39)
-                                .foregroundColor(Color("GreyOne"))
-                                .background(Color("YellowOne"))
+                                .foregroundColor(Color("\(getColorButtonLabelContrast(color: timerModel.selectedColor))"))
+                                .background(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                                 .cornerRadius(100)
                                 .opacity(timerModel.isStarted ? 0 : 1)
                             }
