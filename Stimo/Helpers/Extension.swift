@@ -164,6 +164,27 @@ func getColorExeptionChevronButton(color: Color)-> String {
     }
 }
 
+func getColorExeptChevronHalfModal(color: Color)-> String {
+    switch color {
+    case .red:
+        return "red-2"
+    case .yellow:
+        return "yellow-2"
+    case .green:
+        return "green-2"
+    case .blue:
+        return "blue-2"
+    case .purple:
+        return "purple-2"
+    case .white:
+        return "black"
+    case .black:
+        return "white"
+    default:
+        return "YellowOne"
+    }
+}
+
 
 //MARK: - Underline Text field style
 extension View {

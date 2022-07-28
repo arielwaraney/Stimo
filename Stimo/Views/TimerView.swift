@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct TimerView: View {
     
     @EnvironmentObject var timerModel: TimerModel
@@ -21,7 +22,8 @@ struct TimerView: View {
             CompleteView()
         } else {
             ZStack {
-                Color("\(getColorOne(color: timerModel.selectedColor))").ignoresSafeArea()
+                Color("black-2").ignoresSafeArea()
+                Color("\(getColorOne(color: timerModel.selectedColor))").opacity(mvTimerControlShowed ? 0.5 : 1).ignoresSafeArea()
                 VStack {
                     HStack {
                         Spacer()
@@ -32,7 +34,7 @@ struct TimerView: View {
                             Image(systemName: "x.circle.fill")
                                 .foregroundColor(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                         }
-                        .opacity(timerModel.isStarted ? 0 : 1)
+                        .opacity((timerModel.isStarted || timerModel.isPaused) ? 0 : 1)
                     }.padding()
                     VStack(alignment: .center) {
                         Spacer()
@@ -75,18 +77,15 @@ struct TimerView: View {
                                             .foregroundColor(Color("\(getColorThree(color: timerModel.selectedColor))"))
                                     }
                                 }
-                                .opacity(timerModel.isStarted ? 1 : 0)
+                                .opacity((timerModel.isStarted || timerModel.isPaused) ? 1 : 0)
                                 .sheet(isPresented: $mvFocusPlanShowed) {
                                     FocusPlanView()
                                 }
                                 Spacer()
+                                
                                 Button() {
                                     //action
                                     mvTimerControlShowed.toggle()
-                                    //TODO: Cara Pause Nanti
-                                    /*
-                                    timerModel.isStarted = true
-                                    */
                                     //Cancelling All Notifications
                                     //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                                 } label: {
@@ -97,11 +96,7 @@ struct TimerView: View {
                                             .foregroundColor(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                                     }
                                 }
-                                .opacity(timerModel.isStarted ? 1 : 0)
-                                .sheet(isPresented: $mvTimerControlShowed) {
-                                    TimerControlView()
-                                }
-                                
+                                .opacity((timerModel.isStarted || timerModel.isPaused) ? 1 : 0)
                                 Spacer()
                             }
                             
@@ -118,7 +113,7 @@ struct TimerView: View {
                                 .foregroundColor(Color("\(getColorButtonLabelContrast(color: timerModel.selectedColor))"))
                                 .background(Color("\(getColorThree(color: timerModel.selectedColor))"))
                                 .cornerRadius(100)
-                                .opacity(timerModel.isStarted ? 0 : 1)
+                                .opacity((timerModel.isStarted || timerModel.isPaused) ? 0 : 1)
                                 
                                 Button("START"){
                                     //action
@@ -130,7 +125,7 @@ struct TimerView: View {
                                 .foregroundColor(Color("\(getColorButtonLabelContrast(color: timerModel.selectedColor))"))
                                 .background(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                                 .cornerRadius(100)
-                                .opacity(timerModel.isStarted ? 0 : 1)
+                                .opacity((timerModel.isStarted || timerModel.isPaused) ? 0 : 1)
                             }
                         }
                         Spacer()
@@ -148,9 +143,14 @@ struct TimerView: View {
                             timerModel.isFinished.toggle()
                         }
                     }
-                }
+                }.opacity(mvTimerControlShowed ? 0.5 : 1)
                 .navigationBarHidden(true)
                 .navigationBarBackButtonHidden(true)
+                TimerControlView(showModalScreen: $mvTimerControlShowed)
+                    .padding(.top, (UIScreen.main.bounds.height/2 + UIScreen.main.bounds.height/7))
+                    .offset(y: mvTimerControlShowed ? 0 : UIScreen.main.bounds.height)
+                    .transition(.move(edge: .bottom))
+                    .animation(.spring(), value: mvTimerControlShowed)
             }
         }
          
