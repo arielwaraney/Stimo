@@ -10,6 +10,7 @@ import SwiftUI
 struct BadgeView: View {
     
     @Binding var shown: Bool
+    @AppStorage("point") var userPoints = 0
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
@@ -30,21 +31,21 @@ struct BadgeView: View {
                     Text("Current Badge!")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
-                    Image("badge-start")
+                    Image("\(getBadgeName(point: userPoints))")
                         .resizable()
                         .frame(width: 296, height: 174)
-                    Text("Have at least 0 - 10 points")
+                    Text("Have at least \(getRangeBadge(point: userPoints)) points")
                 }
                 Divider().background(.background)
                 VStack {
                     Text("Next Badge!")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
-                    Image("badge-start")
+                    Image("\(getTheNextBadgeName(point: userPoints))")
                         .resizable()
                         .frame(width: 136, height: 80)
                         .blur(radius: 10)
-                    Text("2 more point(s) to go!")
+                    Text("\(getDifferencePoint(point: userPoints)) more point(s) to go!")
                 }
             }
             .padding(.vertical, 25)

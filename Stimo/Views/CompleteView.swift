@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CompleteView: View {
     
-    @EnvironmentObject var timerModel: TimerModel
     @Environment(\.presentationMode) var presentMode
+    @State var earnPoints = UserDefaults.standard.integer(forKey: "earn")
     
     var body: some View {
         ZStack {
@@ -34,7 +34,7 @@ struct CompleteView: View {
                     Text("You manage to get ")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
-                    Text("0 Points")
+                    Text("\(earnPoints) Points")
                         .foregroundColor(Color("YellowTwo"))
                         .font(.system(size: 20))
                         .fontWeight(.bold)
@@ -42,6 +42,7 @@ struct CompleteView: View {
                 Spacer()
                 Button(){
                     presentMode.wrappedValue.dismiss()
+                    NotificationManager.instance.resetNotification()
                 } label: {
                     Text("DONE")
                         .fontWeight(.bold)

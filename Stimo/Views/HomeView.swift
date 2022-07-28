@@ -11,9 +11,12 @@ struct HomeView: View {
     
     @State var customAlertShowed = false
     @EnvironmentObject var timerModel: TimerModel
+    @AppStorage("point") var userPoints = 0
     
     init() {
         UITableView.appearance().backgroundColor = .clear
+        //MARK: Request Notifications
+        NotificationManager.instance.requestAuthorization()
     }
     
     var body: some View {
@@ -41,7 +44,7 @@ struct HomeView: View {
                                 Text("Your Points")
                                     .foregroundColor(.white)
                                 Spacer()
-                                Text("10")
+                                Text("\(userPoints)")
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("YellowOne"))
                             }
@@ -73,7 +76,7 @@ struct HomeView: View {
                                         customAlertShowed.toggle()
                                     }
                                 } label: {
-                                    Image("badge-start")
+                                    Image("\(getBadgeName(point: userPoints))")
                                         .resizable()
                                         .frame(width:80, height: 50)
                                 }
@@ -204,6 +207,9 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
+            .onAppear() {
+                NotificationManager.instance.resetNotification()
+            }
         }
     }
     
