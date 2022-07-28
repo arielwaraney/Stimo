@@ -24,6 +24,7 @@ class TimerModel: NSObject, ObservableObject {
     @Published var staticTotalSeconds: Int = 0
     
     @Published var selectedColor: Color = .gray
+    @Published var statusTitle: String = "Check Your Focus Plan Before Start!"
     
     override init() {
         super.init()
@@ -31,7 +32,7 @@ class TimerModel: NSObject, ObservableObject {
     
     //MARK: Starting Timer
     func startTimer() {
-        isStarted = true
+        statusTitle = "Focus Mode 👨🏻‍💻"
         withAnimation(.easeInOut(duration: 0.25)){
             isStarted = true
         }
@@ -52,6 +53,7 @@ class TimerModel: NSObject, ObservableObject {
             totalSeconds = 0
             staticTotalSeconds = 0
         }
+        statusTitle = "Check Your Focus Plan Before Start!"
     }
     
     //MARK: Updating Timer
@@ -91,5 +93,9 @@ class TimerModel: NSObject, ObservableObject {
         default:
             return "Error"
         }
+    }
+    
+    func getStatusTitle()->String {
+        return statusTitle
     }
 }

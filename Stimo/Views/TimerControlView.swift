@@ -51,11 +51,13 @@ struct TimerControlView: View {
                                 timerModel.isStarted = true
                                 timerModel.isPaused = false
                                 timerModel.isFinished = false
+                                timerModel.statusTitle = "Check Your Focus Plan Before Start!"
                             } else {
                                 //pause the timer
                                 timerModel.isStarted = false
                                 timerModel.isPaused = true
                                 timerModel.isFinished = false
+                                timerModel.statusTitle = "PAUSED"
                             }
                         }
                         .font(.system(size: 15, weight: .bold, design: .default))

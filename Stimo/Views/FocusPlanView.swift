@@ -11,7 +11,6 @@ struct FocusPlanView: View {
     
     @EnvironmentObject var timerModel: TimerModel
     @ObservedObject var taskStore = TaskStore()
-    @State private var themeColor: Color = .gray
     @State var newTask:String = ""
     @Environment(\.presentationMode) var presentMode
     
@@ -40,12 +39,12 @@ struct FocusPlanView: View {
                         HStack {
                             //Custom Color picker
                             Spacer()
-                            CustomColorPicker(selectedColors: $themeColor)
+                            CustomColorPicker(selectedColors: $timerModel.selectedColor)
                             Spacer()
                         }
                     }
                     .padding(10)
-                    .background(Color("\(getColorOne(color: timerModel.selectedColor))"))
+                    .background(Color("\(getColorPalateBackground(color: timerModel.selectedColor))"))
                     .foregroundColor(Color("\(getColorTextContrast(color: timerModel.selectedColor))"))
                     .cornerRadius(10)
                 }
@@ -96,7 +95,7 @@ struct FocusPlanView: View {
                         .foregroundColor(.black)
                     }
                     .padding(10)
-                    .background(Color("\(getColorOne(color: timerModel.selectedColor))"))
+                    .background(Color("\(getColorPalateBackground(color: timerModel.selectedColor))"))
                     .foregroundColor(Color("\(getColorTextContrast(color: timerModel.selectedColor))"))
                     .cornerRadius(10)
                 }

@@ -85,9 +85,9 @@ func getColorFour(color: Color)-> String {
     case .purple:
         return "purple-2"
     case .white:
-        return "white-3"
-    case .black:
         return "white"
+    case .black:
+        return "black"
     default:
         return "GreyOne"
     }
@@ -156,9 +156,9 @@ func getColorExeptionChevronButton(color: Color)-> String {
     case .purple:
         return "purple-1"
     case .white:
-        return "white"
-    case .black:
         return "black"
+    case .black:
+        return "white"
     default:
         return "YellowOne"
     }
@@ -185,6 +185,26 @@ func getColorExeptChevronHalfModal(color: Color)-> String {
     }
 }
 
+func getColorPalateBackground(color: Color)-> String {
+    switch color {
+    case .red:
+        return "red-1"
+    case .yellow:
+        return "yellow-1"
+    case .green:
+        return "green-1"
+    case .blue:
+        return "blue-1"
+    case .purple:
+        return "purple-1"
+    case .white:
+        return "white-2"
+    case .black:
+        return "black-2"
+    default:
+        return "GreyTwo"
+    }
+}
 
 //MARK: - Underline Text field style
 extension View {

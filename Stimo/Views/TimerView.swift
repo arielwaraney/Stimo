@@ -38,10 +38,11 @@ struct TimerView: View {
                     }.padding()
                     VStack(alignment: .center) {
                         Spacer()
-                        Text("Check Your Focus Plan Before You Start!")
+                        Text("\(timerModel.getStatusTitle())")
                             .foregroundColor(Color("\(getColorTextContrast(color: timerModel.selectedColor))"))
                             .font(.system(size: 25))
                             .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
                         GeometryReader { proxy in
                             VStack(spacing: 15){
                                 ZStack {
