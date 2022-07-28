@@ -10,9 +10,9 @@ import SwiftUI
 struct FocusPlanView: View {
     
     @EnvironmentObject var timerModel: TimerModel
-    @ObservedObject var taskStore = TaskStore()
     @State var newTask:String = ""
     @Environment(\.presentationMode) var presentMode
+    @StateObject var coreData = CoreDataViewModel()
     
     var body: some View {
         ZStack {
@@ -66,7 +66,14 @@ struct FocusPlanView: View {
                                 .underlineTextField(timerModel: timerModel)
                                 .padding(.leading, 5)
                             Spacer(minLength: 10)
-                            Button(action: self.addNewTask, label: {
+                            Button(action: {
+                                //MARK: Make sure the text is not empty
+                                guard !newTask.isEmpty else { return }
+                                //MARK: Add to core data
+                                coreData.addTask(name: newTask)
+                                //MARK: Set text field back to ""
+                                newTask = ""
+                            }, label: {
                                 Text("Add")
                                     .foregroundColor(Color("\(buttonAddColorLabelSame(color: timerModel.selectedColor))"))
                                     .font(.system(size: 14))
@@ -80,17 +87,18 @@ struct FocusPlanView: View {
                         }
                         
                         List {
-                            ForEach($taskStore.tasks) { $task in
+                            ForEach(coreData.savedEntities) { task in
                                 Section {
                                     HStack {
                                         Image(systemName: task.isCompleted ? "checkmark.square" : "square")
                                             .onTapGesture {
-                                                task.isCompleted.toggle()
+                                                coreData.toggleTask(entity: task)
                                             }
-                                        Text(task.name)
+                                        Text(task.name ?? "NO NAME")
                                     }
                                 }
-                            }.onDelete(perform: self.delete)
+                            }
+                            .onDelete(perform: coreData.deleteTask)
                         }
                         .foregroundColor(.black)
                     }
@@ -106,19 +114,6 @@ struct FocusPlanView: View {
                 Spacer()
             }
         }
-    }
-    
-    func addNewTask() {
-        taskStore.tasks.append(TaskModel(name: newTask, isCompleted: false))
-        self.newTask = ""
-    }
-    
-    func move(from source: IndexSet, to destination: Int) {
-        taskStore.tasks.move(fromOffsets: source, toOffset: destination)
-    }
-    
-    func delete(at offsets : IndexSet) {
-        taskStore.tasks.remove(atOffsets: offsets)
     }
 }
 

@@ -21,7 +21,8 @@
 		A9B976B42887E62D00E2766D /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B976B32887E62D00E2766D /* SplashScreenView.swift */; };
 		A9B976D42887FFF500E2766D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B976D32887FFF500E2766D /* NotificationManager.swift */; };
 		A9E319572891360D001C1105 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E319562891360D001C1105 /* CustomColorPicker.swift */; };
-		A9E3195B289158DE001C1105 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3195A289158DE001C1105 /* TaskModel.swift */; };
+		A9E3196828927865001C1105 /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3196728927865001C1105 /* CoreDataViewModel.swift */; };
+		A9E3196B28927A08001C1105 /* TaskCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9E3196928927A08001C1105 /* TaskCoreData.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +41,8 @@
 		A9B976B32887E62D00E2766D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		A9B976D32887FFF500E2766D /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		A9E319562891360D001C1105 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
-		A9E3195A289158DE001C1105 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		A9E3196728927865001C1105 /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
+		A9E3196A28927A08001C1105 /* TaskCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskCoreData.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +83,7 @@
 		A929DD06288A46E3008D7A02 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A9E3195A289158DE001C1105 /* TaskModel.swift */,
+				A9E3196928927A08001C1105 /* TaskCoreData.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				A929DD08288A86C6008D7A02 /* TimerViewModel.swift */,
+				A9E3196728927865001C1105 /* CoreDataViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -207,14 +210,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A98303EC288FC443003C9069 /* FocusPlanView.swift in Sources */,
+				A9E3196828927865001C1105 /* CoreDataViewModel.swift in Sources */,
 				A929DD03288917AA008D7A02 /* BadgeView.swift in Sources */,
 				A9E319572891360D001C1105 /* CustomColorPicker.swift in Sources */,
+				A9E3196B28927A08001C1105 /* TaskCoreData.xcdatamodeld in Sources */,
 				A929DD0128891369008D7A02 /* Extension.swift in Sources */,
 				A9B976A82887E59100E2766D /* HomeView.swift in Sources */,
 				A9B976A62887E59100E2766D /* StimoApp.swift in Sources */,
 				A929DD09288A86C6008D7A02 /* TimerViewModel.swift in Sources */,
 				A98303EA288FBEB0003C9069 /* TimerControlView.swift in Sources */,
-				A9E3195B289158DE001C1105 /* TaskModel.swift in Sources */,
 				A9B976B42887E62D00E2766D /* SplashScreenView.swift in Sources */,
 				A929DD0B288A87DB008D7A02 /* TimerView.swift in Sources */,
 				A9B976D42887FFF500E2766D /* NotificationManager.swift in Sources */,
@@ -421,6 +425,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9E3196928927A08001C1105 /* TaskCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9E3196A28927A08001C1105 /* TaskCoreData.xcdatamodel */,
+			);
+			currentVersion = A9E3196A28927A08001C1105 /* TaskCoreData.xcdatamodel */;
+			path = TaskCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9B9769A2887E59000E2766D /* Project object */;
 }

@@ -98,4 +98,8 @@ class TimerModel: NSObject, ObservableObject {
     func getStatusTitle()->String {
         return statusTitle
     }
+    
+    func getTotalStaticSeconds()-> Int {
+        return staticTotalSeconds
+    }
 }

@@ -12,6 +12,7 @@ struct TimerControlView: View {
     @EnvironmentObject var timerModel: TimerModel
     @Binding var showModalScreen: Bool
     @Environment(\.presentationMode) var presentMode
+    @AppStorage("point") var userPoints = 0
     
     var body: some View {
         ZStack {
@@ -29,7 +30,7 @@ struct TimerControlView: View {
                     HStack() {
                         Text("Your Points")
                         Spacer()
-                        Text("10")
+                        Text("\(userPoints)")
                             .fontWeight(.bold)
                     }
                     .foregroundColor(Color("\(buttonAddColorLabelSame(color: timerModel.selectedColor))"))
@@ -54,6 +55,7 @@ struct TimerControlView: View {
                                 timerModel.statusTitle = "Check Your Focus Plan Before Start!"
                             } else {
                                 //pause the timer
+                                pauseReductionPoint()
                                 timerModel.isStarted = false
                                 timerModel.isPaused = true
                                 timerModel.isFinished = false
@@ -65,6 +67,8 @@ struct TimerControlView: View {
                         .foregroundColor(Color("\(getColorButtonLabelContrast(color: timerModel.selectedColor))"))
                         .background(Color("\(getColorThree(color: timerModel.selectedColor))"))
                         .cornerRadius(100)
+                        .disabled(!pointIsEligible(request: "PauseRequest"))
+                        .opacity(pointIsEligible(request: "PauseRequest") ? 1 : 0.5)
                         Text("(-2 Points)")
                             .font(.system(size: 14))
                             .foregroundColor(timerModel.isPaused ? Color("\(getColorOne(color: timerModel.selectedColor))") : Color("\(buttonAddColorContrast(color: timerModel.selectedColor))"))
@@ -73,6 +77,8 @@ struct TimerControlView: View {
                     VStack {
                         Button("STOP"){
                             //action
+                            //MARK: Reducing Points of 5 Over Here :
+                            stopReductionPoint()
                             timerModel.stopTimer()
                             presentMode.wrappedValue.dismiss()
                             print("Timer start : \(timerModel.isStarted)")
@@ -82,6 +88,8 @@ struct TimerControlView: View {
                         .foregroundColor(Color("\(getColorButtonLabelContrast(color: timerModel.selectedColor))"))
                         .background(Color("\(getColorTwo(color: timerModel.selectedColor))"))
                         .cornerRadius(100)
+                        .disabled(!pointIsEligible(request: "StopRequest"))
+                        .opacity(pointIsEligible(request: "StopRequest") ? 1 : 0.5)
                         Text("(-5 Points)")
                             .font(.system(size: 14))
                             .foregroundColor(Color("\(buttonAddColorContrast(color: timerModel.selectedColor))"))
@@ -89,6 +97,44 @@ struct TimerControlView: View {
                 }
             }
             .cornerRadius(25)
+        }
+    }
+    
+    func stopReductionPoint() {
+        var currentPoint = UserDefaults.standard.integer(forKey: "point")
+        if currentPoint >= 5 {
+            currentPoint -= 5
+        } else {
+            currentPoint = 0
+        }
+        //set to the current point
+        UserDefaults.standard.set(currentPoint, forKey: "point")
+    }
+    
+    func pauseReductionPoint() {
+        var currentPoint = UserDefaults.standard.integer(forKey: "point")
+        if currentPoint >= 2 {
+            currentPoint -= 2
+        } else {
+            currentPoint = 0
+        }
+        //set to the current point
+        UserDefaults.standard.set(currentPoint, forKey: "point")
+    }
+    
+    func pointIsEligible(request: String) -> Bool {
+        let currentPoint = UserDefaults.standard.integer(forKey: "point")
+        if request == "PauseRequest" {
+            if timerModel.isPaused == true {
+                return true
+            } else {
+                if currentPoint >= 2 { return true }
+                else { return false }
+            }
+        } else {
+            //Stop Request
+            if currentPoint >= 5 { return true }
+            else { return false }
         }
     }
 }

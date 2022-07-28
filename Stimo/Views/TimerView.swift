@@ -19,7 +19,7 @@ struct TimerView: View {
     var body: some View {
         
         if isDone {
-            CompleteView()
+            CompleteView().environmentObject(timerModel)
         } else {
             ZStack {
                 Color("black-2").ignoresSafeArea()
@@ -136,11 +136,11 @@ struct TimerView: View {
                             timerModel.updateTimer()
                         }
                         if timerModel.isFinished {
+                            setEarnPoint(time: timerModel.staticTotalSeconds)
                             //call the scheduler notification
                             NotificationManager.instance.scheduleNotification()
                             isDone = timerModel.isFinished
                             timerModel.stopTimer()
-                            print("Timer finish: \(timerModel.isFinished)")
                             timerModel.isFinished.toggle()
                         }
                     }
@@ -168,6 +168,19 @@ struct TimerView: View {
         default:
             return "error"
         }
+    }
+    
+    func setEarnPoint(time: Int){
+        //MARK: 10 Minutes Completion = 1 Point
+        //TODO: Change This To 600 (10 minutes)
+        let earnedPoint:Int = time / 5
+        print("points earned: \(earnedPoint)")
+        //MARK: Set to user default earn
+        UserDefaults.standard.set(earnedPoint, forKey: "earn")
+        let pointBalance = UserDefaults.standard.integer(forKey: "point")
+        let updatedBalance = pointBalance + earnedPoint
+        //MARK: Set Updated Balance to user default point
+        UserDefaults.standard.set(updatedBalance, forKey: "point")
     }
 }
 
