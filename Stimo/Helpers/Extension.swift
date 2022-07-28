@@ -230,7 +230,122 @@ extension View {
         }
 }
 
+// MARK: -  Badge Proccesses Determination
+func getBadgeName(point: Int) -> String {
+    switch point {
+    case 0..<10:
+        return "badge-start"
+    case 10..<50:
+        return "badge-10"
+    case 50..<100:
+        return "badge-50"
+    case 100..<200:
+        return "badge-100"
+    case 200..<300:
+        return "badge-200"
+    case 300..<500:
+        return "badge-300"
+    case 500..<750:
+        return "badge-500"
+    case 750..<1000:
+        return "badge-750"
+    case 1000..<1500:
+        return "badge-1000"
+    case 1500..<2000:
+        return "badge-1500"
+    case 2000..<5000:
+        return "badge-2000"
+    default:
+        return "badge-5000"
+    }
+}
 
+func getTheNextBadgeName(point: Int) -> String {
+    switch point {
+    case 0..<10:
+        return "badge-10"
+    case 10..<50:
+        return "badge-50"
+    case 50..<100:
+        return "badge-100"
+    case 100..<200:
+        return "badge-200"
+    case 200..<300:
+        return "badge-300"
+    case 300..<500:
+        return "badge-500"
+    case 500..<750:
+        return "badge-750"
+    case 750..<1000:
+        return "badge-1000"
+    case 1000..<1500:
+        return "badge-1500"
+    case 1500..<2000:
+        return "badge-2000"
+    case 2000..<5000:
+        return "badge-5000"
+    default:
+        return "none"
+    }
+}
+
+func getRangeBadge(point: Int) -> String {
+    switch point {
+    case 0..<10:
+        return "0-9"
+    case 10..<50:
+        return "10-49"
+    case 50..<100:
+        return "50-99"
+    case 100..<200:
+        return "100-199"
+    case 200..<300:
+        return "200-199"
+    case 300..<500:
+        return "300-499"
+    case 500..<750:
+        return "500-749"
+    case 750..<1000:
+        return "750-999"
+    case 1000..<1500:
+        return "1000-1499"
+    case 1500..<2000:
+        return "1500-1999"
+    case 2000..<5000:
+        return "2000-4999"
+    default:
+        return "5000 Or More"
+    }
+}
+
+func getDifferencePoint(point: Int) -> Int {
+    switch point {
+    case 0..<10:
+        return 10-point
+    case 10..<50:
+        return 50-point
+    case 50..<100:
+        return 100-point
+    case 100..<200:
+        return 200-point
+    case 200..<300:
+        return 300-point
+    case 300..<500:
+        return 400-point
+    case 500..<750:
+        return 750-point
+    case 750..<1000:
+        return 1000-point
+    case 1000..<1500:
+        return 1500-point
+    case 1500..<2000:
+        return 2000-point
+    case 2000..<5000:
+        return 5000-point
+    default:
+        return 0
+    }
+}
 
 
 /*

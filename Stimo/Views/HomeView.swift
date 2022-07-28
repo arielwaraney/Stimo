@@ -76,7 +76,7 @@ struct HomeView: View {
                                         customAlertShowed.toggle()
                                     }
                                 } label: {
-                                    Image("badge-start")
+                                    Image("\(getBadgeName(point: userPoints))")
                                         .resizable()
                                         .frame(width:80, height: 50)
                                 }

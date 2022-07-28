@@ -173,7 +173,7 @@ struct TimerView: View {
     func setEarnPoint(time: Int){
         //MARK: 10 Minutes Completion = 1 Point
         //TODO: Change This To 600 (10 minutes)
-        let earnedPoint:Int = time / 5
+        let earnedPoint:Int = time / 600
         print("points earned: \(earnedPoint)")
         //MARK: Set to user default earn
         UserDefaults.standard.set(earnedPoint, forKey: "earn")
