@@ -62,4 +62,12 @@ class CoreDataViewModel: ObservableObject {
             print("Error Saving. \(error)")
         }
     }
+    
+    func isToggled(entity: TaskEntity)-> Bool {
+        if entity.isCompleted{
+            return true
+        } else {
+            return false
+        }
+    }
 }

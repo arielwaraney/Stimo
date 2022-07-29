@@ -69,6 +69,8 @@ class TimerModel: NSObject, ObservableObject {
             isStarted = false
             isFinished = true
             print("Finished")
+            //MARK: play sound
+            SoundManager.instance.playSound()
         }
     }
     

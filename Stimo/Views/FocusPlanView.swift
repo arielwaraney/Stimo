@@ -14,6 +14,10 @@ struct FocusPlanView: View {
     @Environment(\.presentationMode) var presentMode
     @StateObject var coreData = CoreDataViewModel()
     
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+    }
+    
     var body: some View {
         ZStack {
             Color("\(getColorFour(color: timerModel.selectedColor))").ignoresSafeArea()
@@ -90,13 +94,17 @@ struct FocusPlanView: View {
                             ForEach(coreData.savedEntities) { task in
                                 Section {
                                     HStack {
-                                        Image(systemName: task.isCompleted ? "checkmark.square" : "square")
+                                        Image(systemName: task.isCompleted ? "checkmark.circle" : "circle")
                                             .onTapGesture {
                                                 coreData.toggleTask(entity: task)
                                             }
+                                            .foregroundColor(.black)
                                         Text(task.name ?? "NO NAME")
+                                            .strikethrough(coreData.isToggled(entity: task))
+                                            .fontWeight(coreData.isToggled(entity: task) ? .bold : .regular)
                                     }
                                 }
+                                .listRowBackground(coreData.isToggled(entity: task) ? Color(.green) : Color(.white))
                             }
                             .onDelete(perform: coreData.deleteTask)
                         }
