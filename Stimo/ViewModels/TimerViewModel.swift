@@ -58,19 +58,21 @@ class TimerModel: NSObject, ObservableObject {
     
     //MARK: Updating Timer
     func updateTimer() {
-        totalSeconds -= 1
-        progressBar = Float(CGFloat(totalSeconds) / CGFloat(staticTotalSeconds))
-        progressBar = (progressBar < 0 ? 0 : progressBar)
-        hour = totalSeconds/3600
-        minute = (totalSeconds/60) % 60
-        second = (totalSeconds%60)
-        timerStringValue = "\(hour == 0 ? "" : "\(hour):")\(minute >= 10 ? "\(minute):" : "0\(minute):")\(second >= 10 ? "\(second)" : "0\(second)")"
-        if(hour == 0 && minute == 0 && second == 0){
-            isStarted = false
-            isFinished = true
-            print("Finished")
-            //MARK: play sound
-            SoundManager.instance.playSound()
+        withAnimation {
+            totalSeconds -= 1
+            progressBar = Float(CGFloat(totalSeconds) / CGFloat(staticTotalSeconds))
+            progressBar = (progressBar < 0 ? 0 : progressBar)
+            hour = totalSeconds/3600
+            minute = (totalSeconds/60) % 60
+            second = (totalSeconds%60)
+            timerStringValue = "\(hour == 0 ? "" : "\(hour):")\(minute >= 10 ? "\(minute):" : "0\(minute):")\(second >= 10 ? "\(second)" : "0\(second)")"
+            if(hour == 0 && minute == 0 && second == 0){
+                isStarted = false
+                isFinished = true
+                print("Finished")
+                //MARK: play sound
+                SoundManager.instance.playSound()
+            }
         }
     }
     
