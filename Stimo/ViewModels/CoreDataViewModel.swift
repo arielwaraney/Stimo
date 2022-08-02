@@ -35,6 +35,14 @@ class CoreDataViewModel: ObservableObject {
         }
     }
     
+    func saveData() {
+        do {
+            try container.viewContext.save()
+            fetchTasks()
+        } catch let error {
+            print("Error Saving. \(error)")
+        }
+    }
     func addTask(name: String){
         let newTask = TaskEntity(context: container.viewContext)
         newTask.name = name
@@ -52,15 +60,6 @@ class CoreDataViewModel: ObservableObject {
     func toggleTask(entity: TaskEntity){
         entity.isCompleted.toggle()
         saveData()
-    }
-    
-    func saveData() {
-        do {
-            try container.viewContext.save()
-            fetchTasks()
-        } catch let error {
-            print("Error Saving. \(error)")
-        }
     }
     
     func isToggled(entity: TaskEntity)-> Bool {
